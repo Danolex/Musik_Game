@@ -8,15 +8,9 @@ def lvl1():
     mc = MainCharacter('mc.png')
     mc.rect.x = 400
     mc.rect.y = 500
-    projectiles = {
-        '1': Projectile('projectile.png', 75, 0, 0, 10),
-        '30': Projectile('projectile.png', 75, 0, 0, 10),
-        '50': Projectile('projectile.png', 75, 0, 0, 10),
-    }
     pygame.mixer.init()
     pygame.mixer.music.load('music/music1.mp3')
     pygame.mixer.music.play()
-    return projectiles
 
 
 def lvl2():
@@ -27,15 +21,11 @@ def lvl2():
     pygame.mixer.init()
     pygame.mixer.music.load('music/music2.mp3')
     pygame.mixer.music.play()
-    start_game()
 
 
 def start_game():
-    global lvl1_proj
     tick = 0
     while True:
-        if str(tick) in lvl1_proj:
-            lvl1_proj[str(tick)].update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminate()
@@ -48,10 +38,8 @@ def start_game():
         elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             mc.move_right()
         all_sprites.update()
-        projectile_group.update()
         screen.fill(bg_color)
         all_sprites.draw(screen)
-        projectile_group.draw(screen)
         pygame.display.flip()
         clock.tick(FPS)
         tick += 1
@@ -85,6 +73,4 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 FPS = 60
 bg_color = (195, 195, 195)
-TICK = 0
 mc = None
-lvl1_proj = lvl1()

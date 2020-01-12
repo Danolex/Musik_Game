@@ -1,7 +1,7 @@
 from levels import *
 
 
-# intro()
+intro()
 
 lvl1()
 start_game()
